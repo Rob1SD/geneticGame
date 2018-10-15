@@ -41,5 +41,8 @@ router.get('/randomisePopulation/:population_size/:max_pieces', function(request
 router.get('/getPopulation',function(request, res, next) {
 	res.send(population)
 });
+router.get('/move',function(request, res, next) {
+	res.send(population)
+});
 
 module.exports = router;
