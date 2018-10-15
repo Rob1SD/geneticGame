@@ -9,6 +9,7 @@ var Creatures= class {
 		this.weigth= hp + legs + brain
 		
 		this.sp = (legs) / (1 + legs + brain + hp);
+		this.pos = [0,0]
 		
 		
 		//methodes
