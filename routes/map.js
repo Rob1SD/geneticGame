@@ -30,6 +30,10 @@ router.get('/init/:size/:start/:finish', function(request, res, next) {
 	map.print();
 	res.send(map);
 });
+router.get('/getMap', function(request, res, next) {
+
+	res.send(map);
+});
 router.get('/pcc/:start', function(request, res, next) {
     var start=request.params.start;
     start=start.toString().split(":")

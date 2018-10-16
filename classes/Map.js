@@ -30,6 +30,10 @@ var Map= class {
 		}
 		this.arrayEqual = function(a,b)
 		{
+		    if (!a && !b)
+		        return true;
+		    if ((!a && b) || (a&&!b))
+		        return false;
 			var res=true;
 			if (a.length != b.length)
 				return false;
@@ -172,8 +176,13 @@ var Map= class {
             way=way.reverse();
             objToSend.push(way);
 		}
+		this.generate = function(json)
+        {
+            return new Map(json.terrain, json.size, json.start,json.finish);
+        }
 
-	}
+	};
+
 	
 }
 

@@ -31,11 +31,16 @@ var Creatures= class {
 		}
 		this.move = function(map)
 		{
+			console.log(map)
 			if (this.sp==0)
 				return;
-			var time = parseInt(1000/this.sp)
+			var passedTime=0;
+			var time = parseInt(1000/this.sp);
+			var maxTime=20000
 			var interv = setInterval(function () {
-				if (map.arrayEqual(this.pos, map.finish))
+				passedTime+=time;
+
+				if (map.arrayEqual(this.pos, map.finish) || passedTime >= maxTime)
 				{
                     clearInterval(interv);
                     return;

@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var Creatures = require('../classes/Creatures');
+var Map = require('../classes/Map');
 var pieces = require('../classes/Pieces');
+var request=require('request-then');
 
 /* GET home page. */
 var getRandomInt = function(max) {
@@ -38,11 +40,23 @@ router.get('/randomisePopulation/:population_size/:max_pieces', function(request
 	res.send('respond with a resource');
 });
 
-router.get('/getPopulation',function(request, res, next) {
+router.get('/getPopulation',function(req, res, next) {
 	res.send(population)
 });
-router.get('/move',function(request, res, next) {
-	res.send(population)
+router.get('/move',function(req, res, next) {
+    request('http://127.0.0.1:3000/map/getMap').then(function(response){
+    	//console.log(response)
+        console.log("toto")
+		var tmpMap=new Map(1,1,1,1)
+        console.log("titi")
+        for (var i in population)
+        {
+        	console.log("i = " + i)
+            population[i].move(tmpMap.generate(JSON.parse(response.body)))
+        }
+        res.send(population)
+	})
+
 });
 
 module.exports = router;
